@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "FootyFocus4Application",
+            "request": "launch",
+            "mainClass": "com.example.FootyFocus4.FootyFocus4Application",
+            "projectName": "FootyFocus4",
+            "env": {
+                "FOOTBALL_DATA_ORG_API_KEY": "e277c182b1374e1e96a27d065fab02a5"
+            }
+        }
+    ]
+}
