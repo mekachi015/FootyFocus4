@@ -1,0 +1,198 @@
+.standings-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #1a1a2e;
+  }
+}
+
+// ── Controls ───────────────────────────────────────────────
+.controls {
+  display: flex;
+  //flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fff;
+    cursor: pointer;
+    min-width: 160px;
+
+    &:focus {
+      outline: none;
+      border-color: #3a86ff;
+    }
+
+    &:disabled {
+      background: #f3f4f6;
+      cursor: not-allowed;
+      color: #9ca3af;
+    }
+  }
+}
+
+.fetch-btn {
+  padding: 0.5rem 1.25rem;
+  background: #3a86ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  height: fit-content;
+  width: 100%;
+
+  &:hover { background: #2563eb; }
+
+  &:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+// ── Status / Error ─────────────────────────────────────────
+.status-msg {
+  padding: 1rem;
+  color: #555;
+}
+
+.error-msg {
+  padding: 1rem;
+  color: #dc2626;
+  background: #fef2f2;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+// ── Table ──────────────────────────────────────────────────
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: #fff;
+
+  thead {
+    background: #1a1a2e;
+    color: #fff;
+
+    th {
+      padding: 0.75rem 0.6rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .score-col {
+      width: 40px;
+      text-align: center;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+
+      &:last-child { border-bottom: none; }
+      &:hover { background: #f8f9ff; }
+    }
+
+    td {
+      padding: 0.65rem 0.6rem;
+      vertical-align: middle;
+    }
+  }
+}
+
+// ── Cells ──────────────────────────────────────────────────
+.date-cell {
+  color: #6b7280;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  min-width: 130px;
+}
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.home-cell {
+  justify-content: flex-end;
+  text-align: right;
+  min-width: 140px;
+}
+
+.away-cell {
+  justify-content: flex-start;
+  min-width: 140px;
+}
+
+.vs-cell {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 0.25rem;
+}
+
+.competition-cell {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.crest {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.team-name { display: inline; }
+.team-short { display: none; }
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 640px) {
+  .hide-sm { display: none; }
+  .team-name { display: none; }
+  .team-short { display: inline; }
+  .home-cell { min-width: 80px; }
+  .away-cell { min-width: 80px; }
+}
+
+@media (max-width: 768px) {
+  .hide-md { display: none; }
+}
