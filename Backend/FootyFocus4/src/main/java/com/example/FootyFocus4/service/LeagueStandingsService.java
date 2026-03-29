@@ -43,6 +43,12 @@ public class LeagueStandingsService {
         List<Map<String, Object>> standings = (List<Map<String, Object>>) body.get("standings");
 
         for (Map<String, Object> standing : standings) {
+
+            String type = (String) standing.get("type");
+            if (!"TOTAL".equals(type)) {
+                continue; // Skip non-TOTAL standings
+            }
+            
             List<Map<String, Object>> table = (List<Map<String, Object>>) standing.get("table");
 
             for (Map<String, Object> teamStanding : table) {

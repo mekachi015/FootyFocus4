@@ -1,0 +1,87 @@
+<div class="standings-container">
+
+  <div class="controls">
+    <div class="select-wrapper">
+      <label for="league">League</label>
+      <select id="league" [(ngModel)]="selectedLeague">
+        @for (league of leagueCodes; track league.code) {
+          <option [value]="league.code">{{ league.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="select-wrapper">
+      <label for="season">Season</label>
+      <select id="season" [(ngModel)]="selectedSeason">
+        @for (year of seasonYears; track year) {
+          <option [ngValue]="year">{{ year }}</option>
+        }
+      </select>
+    </div>
+
+    <button class="fetch-btn" (click)="fetchStandings()">Search</button>
+  </div>
+
+  <h2>{{ selectedLeagueName }} {{ selectedSeason }}/{{ (selectedSeason + 1).toString().slice(2) }}</h2>
+
+  @if (isLoading) {
+    <div class="status-msg">Loading standings...</div>
+  }
+  @if (errorMessage) {
+    <div class="error-msg">{{ errorMessage }}</div>
+  }
+  @if (!isLoading && standings.length === 0 && !errorMessage) {
+    <div class="status-msg">No standings found for the selected league and season.</div>
+  }
+
+  @if (standings.length > 0) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Club</th>
+            <th class="hide-sm">MP</th>
+            <th>W</th>
+            <th class="hide-sm">D</th>
+            <th class="hide-sm">L</th>
+            <th>GD</th>
+            <th>Pts</th>
+            <th class="hide-md">Form</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (team of standings; track team.position) {
+            <tr>
+              <td>{{ team.position }}</td>
+              <td class="team-cell">
+                <img [src]="team.teamCrest" [alt]="team.teamShortName" class="crest" />
+                <span class="team-name">{{ team.teamName }}</span>
+                <span class="team-short">{{ team.teamShortName }}</span>
+              </td>
+              <td class="hide-sm">{{ team.matchesPlayed }}</td>
+              <td>{{ team.gamesWon }}</td>
+              <td class="hide-sm">{{ team.gamesDrew }}</td>
+              <td class="hide-sm">{{ team.gamesLost }}</td>
+              <td [class.positive]="team.goalDifference > 0" [class.negative]="team.goalDifference < 0">
+                {{ team.goalDifference > 0 ? '+' : '' }}{{ team.goalDifference }}
+              </td>
+              <td class="points">{{ team.noOfPoints }}</td>
+              <td class="hide-md">
+                @for (result of team.teamForm.split(','); track $index) {
+                  <span class="form-badge"
+                    [class.win]="result === 'W'"
+                    [class.draw]="result === 'D'"
+                    [class.loss]="result === 'L'">
+                    {{ result }}
+                  </span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+</div>
