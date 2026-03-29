@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { LeagueStandings } from '../../models/league-standings-models';
+import { LeagueStandings } from '../../models/league-standings-model/league-standings-models';
 import { LeagueStandingService } from '../../services/leagueStandings-service/league-standing-service';
 import { FormsModule } from '@angular/forms';
 
