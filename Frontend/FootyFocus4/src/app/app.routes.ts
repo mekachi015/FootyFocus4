@@ -3,10 +3,12 @@ import { LeagueStandingsPage } from '../pages/league-standings-page/league-stand
 // Update the import path to the correct file location and name
 import { TopScorerPage } from '../pages/top-scorer-page/top-scorer-page';
 import { CompWinnersPage } from '../pages/comp-winners-page/comp-winners-page';
+import { FixturesPage } from '../pages/fixtures-page/fixtures-page';
 
 
 export const routes: Routes = [
     { path: 'league-standings', component: LeagueStandingsPage },
     { path: 'top-scorer', component: TopScorerPage },
     { path: 'comp-winners', component: CompWinnersPage },
+    { path: 'fixtures', component: FixturesPage },
 ];
