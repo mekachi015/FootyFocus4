@@ -1,0 +1,96 @@
+<div class="standings-container">
+
+  <div class="controls">
+    <div class="select-wrapper">
+      <label for="league">League</label>
+      <select id="league" [(ngModel)]="selectedLeague">
+        @for (league of leagueCodes; track league.code) {
+          <option [value]="league.code">{{ league.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="select-wrapper">
+      <label for="season">Season</label>
+      <select id="season" [(ngModel)]="selectedSeason">
+        @for (year of seasonYears; track year) {
+          <option [ngValue]="year">{{ year }}</option>
+        }
+      </select>
+    </div>
+
+    <button class="fetch-btn" (click)="fetchTopScorers()">Search</button>
+  </div>
+
+  <h2>{{ selectedLeagueName }} {{ selectedSeason }}/{{ (selectedSeason + 1).toString().slice(2) }} Top Scorers</h2>
+
+  @if (isLoading) {
+    <div class="status-msg">Loading top scorers...</div>
+  }
+  @if (errorMessage) {
+    <div class="error-msg">{{ errorMessage }}</div>
+  }
+  @if (!isLoading && topScorers.length === 0 && !errorMessage) {
+    <div class="status-msg">No top scorers found for the selected league and season.</div>
+  }
+
+  @if (topScorers.length > 0) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th class="hide-sm">Nationality</th>
+            <th class="hide-sm">Position</th>
+            <th>Goals</th>
+            <th class="hide-sm">Assists</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (scorer of topScorers; track scorer.id; let i = $index) {
+            <tr (click)="onPlayerClick(scorer.id)" class="clickable-row">
+              <td>{{ i + 1 }}</td>
+              <td class="team-cell">
+                <img [src]="scorer.teamCrest" [alt]="scorer.teamShortName" class="crest" />
+                <span class="team-name">{{ scorer.playerName }}</span>
+                <span class="team-short">{{ scorer.playerName }}</span>
+              </td>
+              <td class="hide-sm">{{ scorer.nationality }}</td>
+              <td class="hide-sm">{{ scorer.section }}</td>
+              <td class="points">{{ scorer.goalsScored }}</td>
+              <td class="hide-sm">{{ scorer.noOfAssits }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- Player detail panel -->
+  @if (isLoadingPlayer) {
+    <div class="status-msg">Loading player details...</div>
+  }
+
+  @if (selectedPlayer) {
+    <div class="player-panel">
+      <div class="player-panel-header">
+        <h3>Player Details</h3>
+        <button class="close-btn" (click)="closePlayer()">✕</button>
+      </div>
+      <div class="player-panel-body">
+        <img [src]="selectedPlayer.teamCrest" [alt]="selectedPlayer.teamName" class="player-crest" />
+        <div class="player-info">
+          <p><span>Name</span>{{ selectedPlayer.playerName }}</p>
+          <p><span>Date of Birth</span>{{ selectedPlayer.dateOfBirth }}</p>
+          <p><span>Nationality</span>{{ selectedPlayer.nationality }}</p>
+          <p><span>Position</span>{{ selectedPlayer.section }}</p>
+          <p><span>Shirt Number</span>{{ selectedPlayer.shirtNumber != null ? '#' + selectedPlayer.shirtNumber : 'N/A' }}</p>
+          <p><span>Team</span>{{ selectedPlayer.teamName }}</p>
+          <p><span>Venue</span>{{ selectedPlayer.teamVenue }}</p>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

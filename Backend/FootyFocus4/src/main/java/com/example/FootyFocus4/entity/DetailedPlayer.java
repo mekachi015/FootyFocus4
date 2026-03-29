@@ -21,7 +21,7 @@ public class DetailedPlayer {
 
     private String section;
 
-    private int shirtNumber;
+    private Integer shirtNumber;
 
     //from current team
     private String teamName;
