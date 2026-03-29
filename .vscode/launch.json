@@ -15,10 +15,7 @@
             "name": "FootyFocus4Application",
             "request": "launch",
             "mainClass": "com.example.FootyFocus4.FootyFocus4Application",
-            "projectName": "FootyFocus4",
-            "env": {
-                "FOOTBALL_DATA_ORG_API_KEY": "e277c182b1374e1e96a27d065fab02a5"
-            }
+            "projectName": "FootyFocus4"
         }
     ]
 }
