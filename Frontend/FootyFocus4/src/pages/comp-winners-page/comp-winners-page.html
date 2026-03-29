@@ -1,0 +1,57 @@
+<div class="standings-container">
+
+  <div class="controls">
+    <div class="select-wrapper">
+      <label for="league">League</label>
+      <select id="league" [(ngModel)]="selectedLeague">
+        @for (league of leagueCodes; track league.code) {
+          <option [value]="league.code">{{ league.name }}</option>
+        }
+      </select>
+    </div>
+
+    <button class="fetch-btn" (click)="fetchWinners()">Search</button>
+  </div>
+
+  <h2>{{ selectedLeagueName }} Champions History</h2>
+
+  @if (isLoading) {
+    <div class="status-msg">Loading winners...</div>
+  }
+  @if (errorMessage) {
+    <div class="error-msg">{{ errorMessage }}</div>
+  }
+  @if (!isLoading && winners.length === 0 && !errorMessage) {
+    <div class="status-msg">No winners found for the selected league.</div>
+  }
+
+  @if (winners.length > 0) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Season</th>
+            <th>Champion</th>
+            <th class="hide-sm">Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (winner of winners; track winner.startDate; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td class="season-cell">{{ getSeasonLabel(winner) }}</td>
+              <td class="team-cell">
+                <img [src]="winner.winnersCrest" [alt]="winner.shortName" class="crest" />
+                <span class="team-name">{{ winner.winnerName }}</span>
+                <span class="team-short">{{ winner.shortName }}</span>
+              </td>
+              <td class="hide-sm">{{ winner.winnerVenue }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+</div>
