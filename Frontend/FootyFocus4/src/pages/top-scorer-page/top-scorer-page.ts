@@ -67,6 +67,7 @@ export class TopScorerPage {
       next: (player) => {
         this.selectedPlayer = player;
         this.isLoadingPlayer = false;
+        console.log('Fetched player details:', this.selectedPlayer);
         this.cdr.markForCheck(); // Ensure view updates after data is set
         this.cdr.detectChanges(); // Force change detection to update the view immediately
       },
