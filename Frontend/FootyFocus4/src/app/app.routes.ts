@@ -5,6 +5,7 @@ import { TopScorerPage } from '../pages/top-scorer-page/top-scorer-page';
 import { CompWinnersPage } from '../pages/comp-winners-page/comp-winners-page';
 import { FixturesPage } from '../pages/fixtures-page/fixtures-page';
 import { HomePage } from '../pages/home-page/home-page';
+import { NavBar } from '../components/nav-bar/nav-bar';
 
 
 export const routes: Routes = [
@@ -13,4 +14,5 @@ export const routes: Routes = [
     { path: 'top-scorer', component: TopScorerPage },
     { path: 'comp-winners', component: CompWinnersPage },
     { path: 'fixtures', component: FixturesPage },
+    { path: 'navBar', component: NavBar },
 ];

@@ -1,71 +1,75 @@
 <div class="standings-container">
-    <div class="controls">
-        <div class="select-wrapper">
-            <label for="league">League</label>
-            <select id="league" [(ngModel)]="selectedLeague" (change)="onLeagueChange()">
-                <option [ngValue]="null">Select League</option>
-                @for (league of leagues; track league) {
-                <option [ngValue]="league">{{ league }}</option>
-                }
-            </select>
-        </div>
+  <div class="controls">
+    <div class="select-wrapper">
+      <label for="league">League</label>
+      <select id="league" [(ngModel)]="selectedLeague" (change)="onLeagueChange()">
+        <option [ngValue]="null">Select League</option>
+        @for (league of leagues; track league) {
+          <option [ngValue]="league">{{ league }}</option>
+        }
+      </select>
+    </div>
 
-        <div class="select-wrapper">
-            <label for="team">Team</label>
-            <select id="team" [(ngModel)]="selectedTeam" (change)="onTeamChange()" [disabled]="!selectedLeague">
-                <option [ngValue]="null">Select Team</option>
-                @for (team of filteredTeams; track team.teamName) {
-                <option [ngValue]="team">{{ team.teamName }}</option>
-                }
-            </select>
-        </div>
+    <div class="select-wrapper">
+      <label for="team">Team</label>
+      <select id="team" [(ngModel)]="selectedTeam" (change)="onTeamChange()" [disabled]="!selectedLeague">
+        <option [ngValue]="null">Select Team</option>
+        @for (team of filteredTeams; track team.teamName) {
+          <option [ngValue]="team">{{ team.teamName }}</option>
+        }
+      </select>
     </div>
 
     <button class="fetch-btn" (click)="onSearch()" [disabled]="!selectedTeam">Search</button>
+  </div>
 
-    @if (selectedTeam) {
+  @if (selectedTeam) {
     <h2>Upcoming Fixtures for {{ selectedTeam?.teamName }}</h2>
-    }
+  }
 
-    @if (loading) { <div class="status-msg">Loading fixtures...</div> }
-    @if (error) { <div class="error-msg">{{ error }}</div> }
-
-    @if (!loading && !error && fixtures.length === 0 && selectedTeam) {
+  @if (loading) { <div class="status-msg">Loading fixtures...</div> }
+  @if (error) { <div class="error-msg">{{ error }}</div> }
+  @if (!loading && !error && fixtures.length === 0 && selectedTeam) {
     <div class="status-msg">No fixtures found for this team.</div>
-    }
+  }
 
-    @if (fixtures.length > 0) {
+  @if (fixtures.length > 0) {
     <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th class="hide-sm">Date</th>
-                    <th>Home</th>
-                    <th class="score-col"></th>
-                    <th>Away</th>
-                    <th class="hide-md">Competition</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (fixture of fixtures; track fixture.id) {
-                <tr>
-                    <td class="date-cell hide-sm">{{ fixture.utcDate | date:'MMM d, y, h:mm a' }}</td>
-                    <td class="team-cell home-cell">
-                        <img [src]="fixture.homeTeamCrest" alt="" class="crest" />
-                        <span class="team-name">{{ fixture.homeTeamName }}</span>
-                        <span class="team-short">{{ fixture.homeTeamName }}</span>
-                    </td>
-                    <td class="vs-cell">vs</td>
-                    <td class="team-cell away-cell">
-                        <img [src]="fixture.awayTeamCrest" alt="" class="crest" />
-                        <span class="team-name">{{ fixture.awayTeamName }}</span>
-                        <span class="team-short">{{ fixture.awayTeamName }}</span>
-                    </td>
-                    <td class="competition-cell hide-md">{{ fixture.competitionName }}</td>
-                </tr>
-                }
-            </tbody>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Home</th>
+            <th class="date-col"></th>
+            <th>Away</th>
+            <th class="hide-sm">Competition</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fixture of fixtures; track fixture.id) {
+            <tr>
+              <td class="team-cell home-cell">
+                <span class="team-name hide-sm">{{ fixture.homeTeamName }}</span>
+                <span class="team-tla show-sm">{{ fixture.homeTeamtla }}</span>
+                <img [src]="fixture.homeTeamCrest" alt="" class="crest" />
+              </td>
+
+              <td class="vs-cell">
+                <span class="vs-date">{{ fixture.utcDate | date:'MMM d' }}</span>
+                <span class="vs-time">{{ fixture.utcDate | date:'h:mm a' }}</span>
+                <span class="vs-label">vs</span>
+              </td>
+
+              <td class="team-cell away-cell">
+                <img [src]="fixture.awayTeamCrest" alt="" class="crest" />
+                <span class="team-name hide-sm">{{ fixture.awayTeamName }}</span>
+                <span class="team-tla show-sm">{{ fixture.awayTeamtla }}</span>
+              </td>
+
+              <td class="competition-cell hide-sm">{{ fixture.competitionName }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </div>
-    }
+  }
 </div>

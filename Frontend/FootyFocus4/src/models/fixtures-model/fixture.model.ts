@@ -10,4 +10,6 @@ export interface Fixture {
   homeTeamCrest: string;
   awayTeamName: string;
   awayTeamCrest: string;
+  homeTeamtla: string;
+  awayTeamtla: string;
 }
