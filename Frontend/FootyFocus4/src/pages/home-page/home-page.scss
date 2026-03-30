@@ -1,6 +1,6 @@
 .home-wrapper {
   font-family: sans-serif;
-  min-height: 100vh;
+  height: 100%;
   background: #f8f9ff;
 }
 
@@ -56,7 +56,12 @@
 // ── Hero ───────────────────────────────────────────────────
 .hero {
   background: #1a1a2e;
-  padding: 5rem 2rem 4rem;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  padding: 4rem 2rem;
   text-align: center;
 }
 
