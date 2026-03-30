@@ -48,6 +48,7 @@ export class TopScorerPage {
       next: (data) => {
         this.topScorers = data;
         this.isLoading = false;
+        console.log('Fetched top scorers:', this.topScorers);
         this.cdr.markForCheck(); // Ensure view updates after data is set
         this.cdr.detectChanges(); // Force change detection to update the view immediately
       },
