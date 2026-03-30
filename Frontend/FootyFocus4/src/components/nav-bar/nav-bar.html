@@ -1,0 +1,22 @@
+<nav class="nav">
+
+  <a class="nav-logo" routerLink="/">
+    <div class="nav-logo-dot"></div>
+    FootyFocus
+  </a>
+
+  <div class="nav-links" [class.open]="isMenuOpen">
+    @for (link of navLinks; track link.path) {
+      <a [routerLink]="link.path" routerLinkActive="active" (click)="closeMenu()">
+        {{ link.label }}
+      </a>
+    }
+  </div>
+
+  <button class="menu-toggle" (click)="toggleMenu()" [class.open]="isMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</nav>

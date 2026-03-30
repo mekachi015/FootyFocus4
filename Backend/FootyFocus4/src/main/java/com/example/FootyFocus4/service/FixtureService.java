@@ -46,11 +46,13 @@ public class FixtureService {
         if (homeTeam != null) {
             fixture.setHomeTeamName((String) homeTeam.get("name"));
             fixture.setHomeTeamCrest((String) homeTeam.get("crest"));
+            fixture.setHomeTeamtla((String) homeTeam.get("tla"));
         }
         Map<String, Object> awayTeam = (Map<String, Object>) match.get("awayTeam");
         if (awayTeam != null) {
             fixture.setAwayTeamName((String) awayTeam.get("name"));
             fixture.setAwayTeamCrest((String) awayTeam.get("crest"));
+            fixture.setAwayTeamtla((String) awayTeam.get("tla"));
         }
         return fixture;
     }
