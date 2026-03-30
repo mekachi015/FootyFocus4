@@ -17,7 +17,7 @@ export class NavBar {
     { label: 'Top Scorers', path: '/top-scorer'},
     { label: 'Fixtures', path: '/fixtures'},
     { label: 'Winners', path: '/comp-winners'},
-    { label: 'Players', path: 'players'},
+    { label: 'Players', path: '/player-search' },
   ];
   constructor(private router: Router) {}
 
