@@ -1,7 +1,4 @@
-<nav class="nav">
-
-  <a class="nav-logo" routerLink="/">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 128 128">
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 128 128">
       <ellipse cx="64" cy="64" fill="#fff" rx="60.14" ry="60.13" />
       <g fill="#2f2f2f">
         <path
@@ -12,21 +9,3 @@
           d="M64 127.72C28.86 127.72.28 99.14.28 64C.28 28.87 28.86.28 64 .28s63.72 28.59 63.72 63.71c0 35.15-28.59 63.73-63.72 63.73M64 7.45C32.82 7.45 7.45 32.82 7.45 64s25.36 56.55 56.54 56.55S120.54 95.18 120.54 64C120.55 32.82 95.17 7.45 64 7.45" />
       </g>
     </svg>
-    FootyFocus
-  </a>
-
-  <div class="nav-links" [class.open]="isMenuOpen">
-    @for (link of navLinks; track link.path) {
-    <a [routerLink]="link.path" routerLinkActive="active" (click)="closeMenu()">
-      {{ link.label }}
-    </a>
-    }
-  </div>
-
-  <button class="menu-toggle" (click)="toggleMenu()" [class.open]="isMenuOpen">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-</nav>
