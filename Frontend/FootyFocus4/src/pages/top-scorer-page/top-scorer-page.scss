@@ -1,3 +1,16 @@
+// ── Custom column colors for desktop ──
+th.hide-sm {
+  color: #fff; // Table header white
+}
+th.points {
+  color: #fff; // Table header white
+}
+td.hide-sm {
+  color: #1a1a2e; // Table info black
+}
+td.points {
+  color: #1a1a2e; // Table info black
+}
 .standings-container {
   max-width: 900px;
   margin: 2rem auto;
@@ -126,6 +139,7 @@ table {
     }
 
     td {
+      color: #1a1a2e;
       padding: 0.65rem 0.6rem;
       text-align: center;
     }
@@ -148,8 +162,16 @@ table {
   flex-shrink: 0;
 }
 
-.team-name { display: inline; }
-.team-short { display: none; }
+.team-name {
+  display: inline;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+.team-short {
+  display: none;
+  color: #1a1a2e;
+  font-weight: 600;
+}
 
 .points {
   font-weight: 700;
@@ -212,6 +234,7 @@ table {
   gap: 2rem;
   padding: 1.5rem;
 }
+// .hide-sm { color:#1a1a2e }
 
 .player-crest {
   width: 90px;
@@ -230,6 +253,8 @@ table {
   gap: 0.5rem;
   font-size: 0.9rem;
   flex: 1;
+  color: #1a1a2e;
+  font-weight: 600;
 
   p {
     margin: 0;
