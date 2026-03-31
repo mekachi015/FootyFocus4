@@ -11,5 +11,5 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("https://footy-focus4.vercel.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
-    }
+    }//
 }
