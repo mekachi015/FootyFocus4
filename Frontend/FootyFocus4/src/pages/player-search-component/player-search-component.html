@@ -1,0 +1,114 @@
+<div class="standings-container">
+  <div class="controls">
+    <div class="select-wrapper">
+      <label for="playerName">Player Name</label>
+      <input
+        id="playerName"
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="e.g. Lionel Messi"
+        (keyup.enter)="onSearch()"
+      />
+    </div>
+    <button class="fetch-btn" (click)="onSearch()" [disabled]="!searchQuery.trim()">
+      Search
+    </button>
+  </div>
+
+  @if (searchQuery && !loading && !error && players.length > 0) {
+    <h2>Results for "{{ searchQuery }}"</h2>
+  }
+
+  @if (loading) { <div class="status-msg">Searching for players...</div> }
+  @if (error) { <div class="error-msg">{{ error }}</div> }
+  @if (!loading && !error && players.length === 0 && searchQuery) {
+    <div class="status-msg">No players found for "{{ searchQuery }}".</div>
+  }
+
+  @if (players.length > 0) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th class="hide-sm">Position</th>
+            <th class="hide-sm">Nationality</th>
+            <th class="hide-md">Born</th>
+            <th class="hide-md">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (player of players; track player.idPlayer) {
+            <tr (click)="openPlayerDetails(player)" class="clickable-row">
+              <td class="team-cell">
+                <img
+                  [src]="player.strThumb || 'assets/placeholder-player.png'"
+                  class="player-thumb"
+                  alt=""
+                  onerror="this.src='assets/placeholder-player.png'"
+                />
+                <div class="player-info">
+                  <span class="team-name">{{ player.strPlayer }}</span>
+                  <span class="player-meta hide-lg">
+                    {{ player.strPosition ?? '—' }} · {{ player.strNationality ?? '—' }}
+                  </span>
+                </div>
+              </td>
+              <td class="hide-sm">{{ player.strPosition ?? '—' }}</td>
+              <td class="hide-sm">{{ player.strNationality ?? '—' }}</td>
+              <td class="hide-md">{{ player.dateBorn ?? '—' }}</td>
+              <td class="hide-md">
+                <span class="status-badge" 
+                  [class.active]="player.strStatus === 'Active'"
+                  [class.inactive]="player.strStatus !== 'Active'">
+                  {{ player.strStatus ?? '—' }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (selectedPlayer) {
+    <div class="modal-backdrop" (click)="closeModal()">
+      <div class="player-modal" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+        
+        <div class="modal-header">
+          <div class="header-content">
+            <img [src]="selectedPlayer.strCutout || selectedPlayer.strThumb" class="modal-avatar">
+            <h3>{{ selectedPlayer.strPlayer }}</h3>
+            <p class="subtitle">{{ selectedPlayer.strPosition }} | {{ selectedPlayer.strTeam }}</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="info-grid">
+            <div class="info-item">
+              <strong>Nationality</strong>
+              <span>{{ selectedPlayer.strNationality }}</span>
+            </div>
+            <div class="info-item">
+              <strong>Date of Birth</strong>
+              <span>{{ selectedPlayer.dateBorn }}</span>
+            </div>
+            <div class="info-item">
+              <strong>Current Club</strong>
+              <span>{{ selectedPlayer.strTeam }}</span>
+            </div>
+            <div class="info-item">
+              <strong>Gender</strong>
+              <span>{{ selectedPlayer.strGender }}</span>
+            </div>
+            <div class="info-item">
+              <strong>Status</strong>
+              <span class="badge">{{ selectedPlayer.strStatus }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

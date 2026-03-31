@@ -1,0 +1,201 @@
+.standings-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #1a1a2e;
+  }
+}
+
+// ── Controls Row ───────────────────────────────────────────
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 200px;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  input[type="text"] {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fff;
+    width: 100%;
+    &:focus { outline: none; border-color: #3a86ff; }
+  }
+}
+
+.fetch-btn {
+  padding: 0.5rem 1.25rem;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  height: 40px;
+  &:hover { background: #16213e; }
+  &:disabled { background: #9ca3af; cursor: not-allowed; }
+}
+
+// ── Table Styling ──────────────────────────────────────────
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: #fff;
+
+  thead {
+    background: #1a1a2e;
+    color: #fff;
+    th {
+      padding: 0.75rem 0.6rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      &:first-child { text-align: left; }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+      &.clickable-row { cursor: pointer; &:hover { background: #f8f9ff; } }
+    }
+    td {
+      padding: 0.65rem 0.6rem;
+      text-align: center;
+      vertical-align: middle;
+      &:first-child { text-align: left; }
+    }
+  }
+}
+
+.player-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+
+.team-cell { display: flex; align-items: center; gap: 0.8rem; }
+.team-name { font-weight: 600; color: #1a1a2e; }
+
+// ── Modal Styling ──────────────────────────────────────────
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.player-modal {
+  background: #fff;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+
+  .close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    background: none; border: none;
+    color: white; font-size: 1.8rem;
+    cursor: pointer; z-index: 10;
+  }
+}
+
+.modal-header {
+  background: #1a1a2e;
+  color: white;
+  padding: 2.5rem 1rem 1.5rem;
+  text-align: center;
+  
+  .modal-avatar {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 3px solid #3a86ff;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  h3 { margin: 0; font-size: 1.4rem; }
+  .subtitle { opacity: 0.8; font-size: 0.9rem; margin-top: 0.3rem; }
+}
+
+#playerName{
+    width: 92.5%;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  padding: 1.5rem;
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    strong { font-size: 0.7rem; text-transform: uppercase; color: #9ca3af; letter-spacing: 0.05em; }
+    span { font-size: 0.95rem; font-weight: 500; color: #1a1a2e; }
+  }
+}
+
+// Status Badges
+.status-badge {
+  padding: 0.2rem 0.6rem; border-radius: 4px; color: #fff; font-size: 0.7rem; font-weight: 700;
+  &.active { background: #16a34a; }
+  &.inactive { background: #9ca3af; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+// ── Responsive ─────────────────────────────────────────────
+.hide-lg { display: none; }
+
+@media (max-width: 640px) {
+  .hide-sm { display: none; }
+  .hide-lg { display: block; }
+  .player-meta { font-size: 0.75rem; color: #6b7280; }
+  .controls { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 768px) {
+  .hide-md { display: none; }
+}

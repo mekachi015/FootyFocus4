@@ -1,0 +1,173 @@
+.standings-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #1a1a2e;
+  }
+}
+
+// ── Controls ───────────────────────────────────────────────
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fff;
+    cursor: pointer;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: #3a86ff;
+    }
+  }
+}
+
+.fetch-btn {
+  padding: 0.5rem 1.25rem;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  height: fit-content;
+  width: 100%;
+
+  &:hover {
+    background: #1a1a2e;
+  }
+}
+
+// ── Status / Error ─────────────────────────────────────────
+.status-msg {
+  padding: 1rem;
+  color: #555;
+}
+
+.error-msg {
+  padding: 1rem;
+  color: #dc2626;
+  background: #fef2f2;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+// ── Table ──────────────────────────────────────────────────
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: #fff;
+
+  thead {
+    background: #1a1a2e;
+    color: #fff;
+
+    th {
+      padding: 0.75rem 0.6rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+
+      &:hover {
+        background: #f8f9ff;
+      }
+
+      // Gold for most recent champion
+      &:nth-child(1) td:first-child { border-left: 3px solid #f59e0b; }
+      &:nth-child(2) td:first-child { border-left: 3px solid #9ca3af; }
+      &:nth-child(3) td:first-child { border-left: 3px solid #b45309; }
+    }
+
+    td {
+      color: #1a1a2e;
+      padding: 0.65rem 0.6rem;
+      text-align: center;
+    }
+  }
+}
+
+// ── Cells ──────────────────────────────────────────────────
+.season-cell {
+  font-weight: 600;
+  color: #1a1a2e;
+  text-align: left !important;
+  white-space: nowrap;
+}
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: left !important;
+  min-width: 160px;
+}
+
+.crest {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.team-name { display: inline; }
+.team-short { display: none; }
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 640px) {
+  .hide-sm { display: none; }
+  .team-name { display: none; }
+  .team-short { display: inline; }
+  .team-cell { min-width: 100px; }
+}
+
+@media (max-width: 768px) {
+  .hide-md { display: none; }
+}
