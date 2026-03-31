@@ -2,12 +2,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PlayerSearch } from '../../models/playerSearch-model/playerSearch-model';
 import { Observable, catchError, throwError } from 'rxjs';
-
+import { environment } from '../../enviroments/enviroment.prod';
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerSearchService {
-  private readonly API_URL = 'http://localhost:8080/api/players/search';
+  private readonly API_URL = `${environment.apiUrl}/api/players/search`;
 
   constructor(private http: HttpClient) {}
 

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { CompWinners } from '../../models/compWinners-model/compWinners-model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-
+import { environment } from '../../enviroments/enviroment.prod';
 @Injectable({
   providedIn: 'root',
 })
 export class CompWinnersService {
-    private readonly BASE_URL = 'http://localhost:8080/v4/competitions';
+    private readonly BASE_URL = `${environment.apiUrl}/v4/competitions`;
 
   constructor(private http: HttpClient) {}
 

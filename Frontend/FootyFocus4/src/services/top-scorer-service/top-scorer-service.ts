@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { DetailedPlayer } from '../../models/detailed-player-model/detailed-player-model';
 import { TopScorer } from '../../models/top-scorere-model/topscorer-model';
-
+import { environment } from '../../enviroments/enviroment.prod';
 @Injectable({
   providedIn: 'root',
 })
 export class TopScorerService {
-  private readonly BASE_URL = 'http://localhost:8080/v4/competitions';
-  private readonly PLAYER_URL = 'http://localhost:8080/v4/persons';
+  private readonly BASE_URL = `${environment.apiUrl}/v4/competitions`;
+  private readonly PLAYER_URL = `${environment.apiUrl}/v4/persons`;
 
   constructor(private http: HttpClient) {}
 
