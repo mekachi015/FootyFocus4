@@ -10,6 +10,7 @@ import com.example.FootyFocus4.service.PlayerSearchService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "https://footy-focus4.vercel.app")
 @RestController
 @RequestMapping("/api/players")
 public class PlayerSearchController {

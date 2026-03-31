@@ -9,6 +9,7 @@ import org.springframework.web.client.*;
 import com.example.FootyFocus4.entity.TopScorer;
 import com.example.FootyFocus4.service.TopScorerService;
 
+@CrossOrigin(origins = "https://footy-focus4.vercel.app")
 @RestController
 @RequestMapping("/v4/competitions/")
 public class TopScorerController {

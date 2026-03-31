@@ -12,6 +12,7 @@ import com.example.FootyFocus4.service.LeagueStandingsService;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "https://footy-focus4.vercel.app")
 @RestController
 @RequestMapping("/v4/competitions")
 public class LeagueStandingsController {

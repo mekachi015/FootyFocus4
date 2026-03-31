@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import java.util.List;
 
+@CrossOrigin(origins = "https://footy-focus4.vercel.app")
 @RestController
 @RequestMapping("/v4/matches")
 public class FixtureController {

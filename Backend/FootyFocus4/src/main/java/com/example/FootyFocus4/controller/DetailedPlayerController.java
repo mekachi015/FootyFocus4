@@ -9,6 +9,7 @@ import com.example.FootyFocus4.service.DetailedPlayerService;
 import org.springframework.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@CrossOrigin(origins = "https://footy-focus4.vercel.app")
 @RestController
 @RequestMapping("/v4/persons")
 public class DetailedPlayerController {
